@@ -173,13 +173,13 @@ Private Sub AddBracketsToFunction()
   formula = formula & " "
   For i = Len(formula) - 1 To 1 Step -1
     ch = Mid(formula, i, 1)
-    If Not IsError(Application.Match(ch, arrFuncChar, 0)) Then
+    If AltMatch(ch, arrFuncChar) Then
       ch = Mid(formula, i + 1, 1)
-      If IsError(Application.Match(ch, arrLbr, 0)) Then
+      If Not AltMatch(ch, arrLbr) Then
         formula = Left(formula, i) & "(" & Mid(formula, i + 1, n)
         For j = i + 1 To Len(formula)
           ch = Mid(formula, j, 1)
-          If Not IsError(Application.Match(ch, arrStopChars, 0)) Then
+          If AltMatch(ch, arrStopChars) Then
             formula = Left(formula, j - 1) & ")" & Mid(formula, j, n)
             Exit For
           End If
@@ -188,6 +188,21 @@ Private Sub AddBracketsToFunction()
     End If
   Next i
 End Sub
+
+' alternative Match function to overcome issue with asterisk
+Private Function AltMatch(ByRef ch As String, _
+  ByRef arr() As Variant) As Boolean
+  Dim i As Integer
+  Dim found As Boolean
+  found = False
+  For i = LBound(arr) To UBound(arr)
+    If ch = arr(i) Then
+      found = True
+      Exit For
+    End If
+  Next i
+  AltMatch = found
+End Function
 
 ' process Abs brackets
 Private Sub AbsReplace(ByRef val As Boolean)
@@ -250,3 +265,4 @@ Private Sub UserForm_Terminate()
   Call SetWindowLong(hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) Or WS_EX_LAYERED)
   Call SetLayeredWindowAttributes(Me.hWnd, 0, bytOpacity, LWA_ALPHA)
 End Sub
+   
