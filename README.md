@@ -43,7 +43,7 @@ Quite often, I have a lot of windows open. Sometimes, I need to jump between the
 **Notes:**
   - The semicolon `;` is used as the separator for a function arguments.
   - The comma `,` is used as the thousands separator and is removed.
-  - The degree sign `°` tells Calculator to convert the input value from degree to radians.
+  - The degree sign `°` tells Calculator to convert the input value from degrees to radians.
   - Breaking and non-breaking spaces are removed.
   - π is converted to Excel `PI()` function.
   - The square root `√` is converted to Excel `SQRT()` function.
