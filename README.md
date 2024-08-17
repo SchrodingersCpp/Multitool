@@ -23,7 +23,7 @@ Quite often, I have a lot of windows open. Sometimes, I need to jump between the
   - Show/hide leading plus sign.
   - Show/hide trailing zeros.
   - Control number of digits after decimal comma.
-    **Note:** the result in the title bar remains unformatted.
+    **Note:** The result in the title bar remains unformatted.
 - If needed, you may copy the formatted result from the output field.
 - Topmost tool button is embedded into Calculator window also (refer to usage instructions below).
 
@@ -38,7 +38,7 @@ Quite often, I have a lot of windows open. Sometimes, I need to jump between the
 - A pair of round `()`, square `[]`, and figure `{}` brackets are all converted to round brackets.
 - A pair of single vertical pipes `|` are converted to Excel `ABS()` function.
 - A pair of floor `⌊⌋` and ceiling `⌈⌉` brackets are converted to Excel `ROUNDDOWN()` and `ROUNDUP()` functions and rounds the value to a whole number.
-- `sin`, `cos`, `tan`, `cot`, `sec`, `csc`, `sinh`, `cosh`, `tanh`, `coth`, `sech`, and `csch` functions can be used in conjunction with degree sign `°` and/or a pair of round `()`, square `[]`, and/or figure `{}` brackets.
+- `sin`, `cos`, `tan`, `cot`, `sec`, `csc`, `sinh`, `cosh`, `tanh`, `coth`, `sech`, and `csch` functions can be used in conjunction with the degree sign `°` and/or a pair of round `()`, square `[]`, and/or figure `{}` brackets.
 - min and max functions can be used in conjunction with a semicolon ; (used as values separator) and/or a pair of round `()`, square `[]`, and/or figure `{}` brackets.
 **Notes:**
   - The semicolon `;` is used as the separator for a function arguments.
@@ -49,16 +49,16 @@ Quite often, I have a lot of windows open. Sometimes, I need to jump between the
   - The square root `√` is converted to Excel `SQRT()` function.
   - The multiplication sign `×` is converted to the asterisk sign `*`.
   - The fraction slash `⁄` is converted to the forward slash `/`.
-  - The hyphen `‐`, figure dash `‒`, en dash `–`, em dash `—`, and horizontal bar `―` are converted to the hyphen-minus sign `-`.
+  - The hyphen `‐`, the figure dash `‒`, the en dash `–`, the em dash `—`, and the horizontal bar `―` are all converted to the hyphen-minus sign `-`.
   - The function application sign is removed.
 
 ### How to use Topmost tool:
 - Click a topmost run button and within 3 seconds activate the window you want to make topmost/non-topmost.
-  **Note:** If window is topmost, it will become non-topmost and vice versa.
+  **Note:** If a window is topmost, it will become non-topmost and vice versa.
 
 ### Known issues:
 - Topmost tool may not work with some remote application windows (e.g., it may not work with Citrix applications).
-- When activating Calculator, the Excel window gets completely transparent and, sometimes, the window's shadow can be visible and the user may be clicking in that transparent window.
+- When activating Calculator, the Excel window gets completely transparent and, sometimes, the window's shadow can be visible, so, a user may be clicking in that transparent window.
 
 ### Examples (highlighted portion is what should be copy-pasted into Calculator):
 ![examples](https://user-images.githubusercontent.com/18612775/209526584-48f653a0-0f0c-44ec-b8ac-740bbad392c3.png)
