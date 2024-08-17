@@ -39,13 +39,13 @@ Quite often, I have a lot of windows open. Sometimes, I need to jump between the
 - A pair of single vertical pipes `|` are converted to Excel `ABS()` function.
 - A pair of floor `⌊⌋` and ceiling `⌈⌉` brackets are converted to Excel `ROUNDDOWN()` and `ROUNDUP()` functions and rounds the value to a whole number.
 - `sin`, `cos`, `tan`, `cot`, `sec`, `csc`, `sinh`, `cosh`, `tanh`, `coth`, `sech`, and `csch` functions can be used in conjunction with the degree sign `°` and/or a pair of round `()`, square `[]`, and/or figure `{}` brackets.
-- min and max functions can be used in conjunction with a semicolon ; (used as values separator) and/or a pair of round `()`, square `[]`, and/or figure `{}` brackets.
+- `min` and `max` functions can be used in conjunction with the semicolon `;` (used as values separator) and/or a pair of round `()`, square `[]`, and/or figure `{}` brackets.
 **Notes:**
   - The semicolon `;` is used as the separator for a function arguments.
   - The comma `,` is used as the thousands separator and is removed.
   - The degree sign `°` tells Calculator to convert the input value from degrees to radians.
   - Breaking and non-breaking spaces are removed.
-  - π is converted to Excel `PI()` function.
+  - `π` is converted to Excel `PI()` function.
   - The square root `√` is converted to Excel `SQRT()` function.
   - The multiplication sign `×` is converted to the asterisk sign `*`.
   - The fraction slash `⁄` is converted to the forward slash `/`.
