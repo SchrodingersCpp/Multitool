@@ -50,7 +50,7 @@ Quite often, I have a lot of windows open. Sometimes, I need to jump between the
   - The multiplication sign `×` is converted to the asterisk sign `*`.
   - The fraction slash `⁄` is converted to the forward slash `/`.
   - The hyphen `‐`, the figure dash `‒`, the en dash `–`, the em dash `—`, and the horizontal bar `―` are all converted to the hyphen-minus sign `-`.
-  - The function application sign is removed.
+  - The Unicode function application symbol is removed.
 
 ### How to use Topmost tool:
 - Click a topmost run button and within 3 seconds activate the window you want to make topmost/non-topmost.
