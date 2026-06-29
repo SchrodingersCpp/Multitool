@@ -18,25 +18,22 @@ Private Const SWP_NOSIZE = &H1
 
 Private Const HWND_TOPMOST = -1
 
-Private Declare Function SetWindowPos Lib "user32" _
-  (ByVal hWnd As Long, _
-  ByVal hWndInsertAfter As Long, _
-  ByVal X As Long, _
-  ByVal Y As Long, _
-  ByVal cx As Long, _
-  ByVal cy As Long, _
+Private Declare PtrSafe Function SetWindowPos Lib "user32" _
+  (ByVal hWnd As LongPtr, ByVal hWndInsertAfter As LongPtr, _
+  ByVal X As Long, ByVal Y As Long, ByVal cx As Long, ByVal cy As Long, _
   ByVal uFlags As Long) As Long
 
-Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" _
-  (ByVal lpClassName As String, _
-  ByVal lpWindowName As String) As Long
+Private Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" _
+  (ByVal lpClassName As String, ByVal lpWindowName As String) As LongPtr
 
-Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _
-  (ByVal hWnd As Long, ByVal nIndex As Long) As Long
-Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" _
-  (ByVal hWnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
-Private Declare Function SetLayeredWindowAttributes Lib "user32" _
-  (ByVal hWnd As Long, ByVal crey As Byte, ByVal bAlpha As Byte, ByVal dwFlags As Long) As Long
+Private Declare PtrSafe Function GetWindowLong Lib "user32" _
+  Alias "GetWindowLongA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As Long
+Private Declare PtrSafe Function SetWindowLong Lib "user32" _
+  Alias "SetWindowLongA" (ByVal hWnd As LongPtr, ByVal nIndex As Long, _
+  ByVal dwNewLong As Long) As Long
+Private Declare PtrSafe Function SetLayeredWindowAttributes Lib "user32" _
+  (ByVal hWnd As LongPtr, ByVal crKey As Long, ByVal bAlpha As Byte, _
+  ByVal dwFlags As Long) As Long
 
 Private Const GWL_EXSTYLE = (-20)
 Private Const WS_EX_LAYERED = &H80000
@@ -52,7 +49,7 @@ End Sub
 Private Sub UserForm_Initialize()
   Dim i As Byte
   Dim ret As Long
-  Dim formHWnd As Long
+  Dim formHWnd As LongPtr
   Dim bytOpacity As Byte
   Const C_VBA6_USERFORM_CLASSNAME = "ThunderDFrame"
   With cmbPrec
@@ -89,12 +86,14 @@ Private Sub txtIn_Change()
   Dim dec As String
   Dim sign As String
   Dim trZeros As String
+  Dim outputColor As Long
   sign = ""
   formula = txtIn.Value
   Call AddBracketsToFunction
   Call SymReplace(" ", "") ' space
   Call SymReplace(ChrW(&H3C0), "PI()")  ' pi
   Call SymReplace(ChrW(&HD7), "*") ' x
+  Call SymReplace(ChrW(&H22C5), "*") ' middle dot
   Call SymReplace(ChrW(&H221A), "SQRT") ' sqrt
   Call SymReplace(ChrW(&H3016), "(") ' (
   Call SymReplace(ChrW(&H3017), ")") ' )
@@ -122,6 +121,7 @@ Private Sub txtIn_Change()
   ' semicolon used as function argument separator
   formula = Replace(txtIn.Value, ";", _
     Application.International(xlListSeparator))
+  outputColor = rgbRed
   If IsError(Evaluate("(" & formula & ")")) Then
     out = "..."
     outFull = out
@@ -131,7 +131,11 @@ Private Sub txtIn_Change()
   Else
     outFull = Evaluate("(" & formula & ")")
     If IsNumeric(outFull) Then
-      If outFull < 0 Then sign = "-"
+      If outFull < 0 Then
+        sign = "-"
+      Else
+        outputColor = rgbBlack
+      End If
       out = Round(outFull, cmbPrec.Value)
       outFull = Abs(outFull)
       If (outFull >= 1000) And _
@@ -154,6 +158,7 @@ Private Sub txtIn_Change()
     End If
   End If
   txtOut.Value = out
+  txtOut.ForeColor = outputColor
   ufCalc.Caption = title & String(141, " ") & sign & outFull
 End Sub
 
@@ -265,4 +270,3 @@ Private Sub UserForm_Terminate()
   Call SetWindowLong(hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) Or WS_EX_LAYERED)
   Call SetLayeredWindowAttributes(Me.hWnd, 0, bytOpacity, LWA_ALPHA)
 End Sub
-   
